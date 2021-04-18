@@ -77,14 +77,7 @@ function activateSectionInViewPort(sections){
 }
 
 // Scroll to anchor ID using scrollTO event
-function scrollToAnchor(event){
-    if(event.target.nodeName === 'A'){
-        event.preventDefault();
-        let href = event.target.getAttribute('href');
-        let section = document.querySelector(href);
-        section.scrollIntoView({behavior: "smooth"});
-    }
-}
+
 
 /**
  * End Main Functions
@@ -94,8 +87,13 @@ function scrollToAnchor(event){
 // Build menu 
 buildTheNav(nav_list,sections);
 // Scroll to section on link click
-nav_list.addEventListener('click', function(event){
-    scrollToAnchor(event)
+nav_list.addEventListener('click', (event) => {
+    if(event.target.nodeName === 'A'){
+        event.preventDefault();
+        let href = event.target.getAttribute('href');
+        let section = document.querySelector(href);
+        section.scrollIntoView({behavior: "smooth"});
+    }
 });
 
 // Set sections as active
